@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileText, Upload, CheckCircle, XCircle, Clock, AlertTriangle, Eye, Download, DollarSign } from 'lucide-react';
+import { FileText, Upload, CheckCircle, XCircle, Clock, AlertTriangle, Eye, Download, DollarSign, Plus } from 'lucide-react';
 
 interface SupplierDuplicata {
   id: string;
@@ -263,6 +263,14 @@ export const SupplierDuplicatas: React.FC = () => {
   const [showUploadModal, setShowUploadModal] = useState<string | null>(null);
   const [showDetailsModal, setShowDetailsModal] = useState<string | null>(null);
   const [showNegotiationModal, setShowNegotiationModal] = useState<string | null>(null);
+  const [showNewDuplicataModal, setShowNewDuplicataModal] = useState(false);
+  const [newDuplicataForm, setNewDuplicataForm] = useState({
+    number: '',
+    invoiceNumber: '',
+    issueDate: '',
+    dueDate: '',
+    amount: ''
+  });
   const [negotiationForm, setNegotiationForm] = useState({
     favorecidoNome: '',
     favorecidoCnpj: '',
@@ -343,6 +351,26 @@ export const SupplierDuplicatas: React.FC = () => {
     closeNegotiationModal();
   };
 
+  const openNewDuplicataModal = () => {
+    setNewDuplicataForm({
+      number: '',
+      invoiceNumber: '',
+      issueDate: '',
+      dueDate: '',
+      amount: ''
+    });
+    setShowNewDuplicataModal(true);
+  };
+
+  const closeNewDuplicataModal = () => {
+    setShowNewDuplicataModal(false);
+  };
+
+  const handleNewDuplicataSubmit = () => {
+    console.log('Nova duplicata:', newDuplicataForm);
+    closeNewDuplicataModal();
+  };
+
   const selectedDuplicataForDetails = showDetailsModal 
     ? mockDuplicatas.find(d => d.id === showDetailsModal)
     : null;
@@ -355,6 +383,14 @@ export const SupplierDuplicatas: React.FC = () => {
           <p className="text-gray-600">Gerencie suas duplicatas e faça upload dos XMLs das notas fiscais</p>
         </div>
         <div className="flex space-x-3">
+          <button
+            onClick={openNewDuplicataModal}
+            className="sap-button"
+            style={{ height: '26px' }}
+          >
+            <Plus className="w-4 h-4 mr-2 inline" />
+            Nova Duplicata
+          </button>
           <button className="sap-button-secondary" style={{ height: '26px' }}>
             <Download className="w-4 h-4 mr-2 inline" />
             Exportar
@@ -902,6 +938,112 @@ export const SupplierDuplicatas: React.FC = () => {
                   className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors font-medium"
                 >
                   Confirmar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de Nova Duplicata */}
+      {showNewDuplicataModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <h3 className="text-xl font-semibold text-gray-900">
+                Nova Duplicata
+              </h3>
+              <button
+                onClick={closeNewDuplicataModal}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="p-6">
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Número da duplicata
+                  </label>
+                  <input
+                    type="text"
+                    value={newDuplicataForm.number}
+                    onChange={(e) => setNewDuplicataForm({ ...newDuplicataForm, number: e.target.value })}
+                    placeholder="Ex: DUP-015/2024"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Número da nota fiscal
+                  </label>
+                  <input
+                    type="text"
+                    value={newDuplicataForm.invoiceNumber}
+                    onChange={(e) => setNewDuplicataForm({ ...newDuplicataForm, invoiceNumber: e.target.value })}
+                    placeholder="Ex: NF-001248"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Data de emissão
+                    </label>
+                    <input
+                      type="date"
+                      value={newDuplicataForm.issueDate}
+                      onChange={(e) => setNewDuplicataForm({ ...newDuplicataForm, issueDate: e.target.value })}
+                      className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Vencimento
+                    </label>
+                    <input
+                      type="date"
+                      value={newDuplicataForm.dueDate}
+                      onChange={(e) => setNewDuplicataForm({ ...newDuplicataForm, dueDate: e.target.value })}
+                      className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Valor (R$)
+                  </label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    value={newDuplicataForm.amount}
+                    onChange={(e) => setNewDuplicataForm({ ...newDuplicataForm, amount: e.target.value })}
+                    placeholder="0,00"
+                    className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-end space-x-3 mt-6">
+                <button
+                  onClick={closeNewDuplicataModal}
+                  className="px-6 py-2 text-gray-600 hover:text-gray-800 transition-colors font-medium"
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleNewDuplicataSubmit}
+                  className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors font-medium"
+                >
+                  Cadastrar
                 </button>
               </div>
             </div>

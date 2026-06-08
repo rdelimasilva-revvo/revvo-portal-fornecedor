@@ -1,0 +1,329 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* SAP Fiori Design System */
+:root {
+  --sap-shell-color: #354a5f;
+  --sap-shell-hover: #2b3e50;
+  --sap-brand-color: #0070f2;
+  --sap-brand-hover: #0064d9;
+  --sap-content-background: #f7f7f7;
+  --sap-tile-background: #ffffff;
+  --sap-border-color: #e5e5e5;
+  --sap-text-color: #32363a;
+  --sap-text-muted: #6a6d70;
+  --sap-success-color: #107e3e;
+  --sap-error-color: #b00;
+  --sap-warning-color: #e9730c;
+  --sap-info-color: #0070f2;
+  --sap-shadow: 0 0 0.125rem 0 rgba(0, 0, 0, 0.1), 0 0.125rem 0.5rem 0 rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: "72", "72full", Arial, Helvetica, sans-serif;
+  background-color: var(--sap-content-background);
+  color: var(--sap-text-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* SAP Fiori Typography */
+.sap-title {
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--sap-text-color);
+}
+
+.sap-subtitle {
+  font-size: 0.875rem;
+  color: var(--sap-text-muted);
+  font-weight: 400;
+}
+
+.sap-label {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--sap-text-color);
+}
+
+/* SAP Fiori Cards */
+.sap-card {
+  background: var(--sap-tile-background);
+  border: 1px solid #f0f0f0;
+  border-radius: 0.5rem;
+  box-shadow: none;
+  padding: 1rem;
+}
+
+.sap-tile {
+  background: var(--sap-tile-background);
+  border: 1px solid #f0f0f0;
+  border-radius: 0.5rem;
+  box-shadow: none;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.sap-tile:hover {
+  box-shadow: none;
+}
+
+/* SAP Fiori Buttons */
+.sap-button {
+  background: var(--sap-brand-color);
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  height: 26px;
+  padding: 0 1rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sap-button:hover {
+  background: var(--sap-brand-hover);
+}
+
+.sap-button-secondary {
+  background: transparent;
+  color: var(--sap-brand-color);
+  border: 1px solid var(--sap-brand-color);
+  background: white;
+  border-radius: 0.25rem;
+  height: 26px;
+  padding: 0 1rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sap-button-secondary:hover {
+  background: #f0f8ff;
+  border-color: var(--sap-brand-hover);
+}
+
+/* SAP Fiori Table */
+.sap-table {
+  background: var(--sap-tile-background);
+  border: 1px solid #f0f0f0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.sap-table th {
+  background: #f7f7f7;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--sap-text-color);
+  text-align: left;
+}
+
+.sap-table td {
+  padding: 4px 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.875rem;
+  color: var(--sap-text-color);
+}
+
+.sap-table tr:hover {
+  background: #f8f9fa;
+}
+
+/* SAP Fiori Status Indicators */
+.sap-status-success {
+  background: white;
+  color: var(--sap-success-color);
+  border: 1px solid #f0f0f0;
+}
+
+.sap-status-error {
+  background: white;
+  color: var(--sap-error-color);
+  border: 1px solid #f0f0f0;
+}
+
+.sap-status-warning {
+  background: white;
+  color: var(--sap-warning-color);
+  border: 1px solid #f0f0f0;
+}
+
+.sap-status-info {
+  background: white;
+  color: var(--sap-info-color);
+  border: 1px solid #f0f0f0;
+}
+
+/* SAP Fiori Navigation */
+.sap-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  color: var(--sap-text-color);
+  text-decoration: none;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  text-align: left;
+  width: 100%;
+}
+
+.sap-nav-item:hover {
+  background: #f0f0f0;
+  color: var(--sap-brand-color);
+}
+
+.sap-nav-item.active {
+  background: #eaf7ff;
+  color: #1474f2;
+}
+
+/* SAP Fiori Shell */
+.sap-shell-header {
+  background: white;
+  color: var(--sap-text-color);
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.sap-shell-sidebar {
+  background: white;
+  border-right: 1px solid #f0f0f0;
+  width: 15rem;
+  min-height: calc(100vh - 2.75rem);
+}
+
+/* SAP Fiori Metrics */
+.sap-metric-tile {
+  background: var(--sap-tile-background);
+  border: 1px solid #f0f0f0;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: none;
+  transition: all 0.2s ease;
+}
+
+.sap-metric-tile:hover {
+  box-shadow: none;
+}
+
+.sap-metric-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--sap-text-color);
+}
+
+.sap-metric-label {
+  font-size: 0.875rem;
+  color: var(--sap-text-muted);
+  margin-top: 0.25rem;
+}
+
+.sap-metric-trend {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.sap-metric-trend.positive {
+  color: var(--sap-success-color);
+}
+
+.sap-metric-trend.negative {
+  color: var(--sap-error-color);
+}
+
+/* SAP Fiori Form Elements */
+.sap-input {
+  border: 1px solid #f0f0f0;
+  border-radius: 0.25rem;
+  height: 2rem;
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+  background: white;
+  transition: border-color 0.2s ease;
+}
+
+.sap-input:focus {
+  outline: none;
+  border-color: var(--sap-brand-color);
+  box-shadow: 0 0 0 0.125rem rgba(0, 112, 242, 0.2);
+}
+
+.sap-select {
+  border: 1px solid #f0f0f0;
+  border-radius: 0.25rem;
+  height: 2rem;
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+  background: white;
+  cursor: pointer;
+}
+
+/* SAP Fiori Icons */
+.sap-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+/* SAP Fiori Content Area */
+.sap-content {
+  background: var(--sap-content-background);
+  min-height: calc(100vh - 2.75rem);
+  padding: 56px 40px 40px 40px;
+}
+
+.sap-page-header {
+  margin-bottom: 1.5rem;
+}
+
+.sap-page-title {
+  font-size: 1.375rem;
+  font-weight: 400;
+  color: var(--sap-text-color);
+  margin: 0 0 0.25rem 0;
+}
+
+.sap-page-subtitle {
+  font-size: 0.875rem;
+  color: var(--sap-text-muted);
+  margin: 0;
+}
+
+/* SAP Fiori Responsive */
+@media (max-width: 768px) {
+  .sap-shell-sidebar {
+    width: 100%;
+    position: fixed;
+    top: 2.75rem;
+    left: -100%;
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .sap-shell-sidebar.open {
+    left: 0;
+  }
+  
+  .sap-content {
+    padding: 56px 20px 20px 20px;
+  }
+}
